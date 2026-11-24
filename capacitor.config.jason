@@ -1,5 +1,5 @@
 {
   "appId": "com.mathqsaleseval.app",
   "appName": "mathaq saleseval",
-  "webDir": "dist"
+  "webDir": "www"
 }
