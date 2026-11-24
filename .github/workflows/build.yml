@@ -16,21 +16,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install dependencies and build web app
+      - name: Prepare web files and Capacitor
         run: |
-          npm install
-          npm run build
-
-      - name: Install Capacitor and add Android
-        run: |
+          mkdir -p www
+          find . -maxdepth 1 ! -name '.' ! -name '..' ! -name 'www' ! -name '.git' ! -name '.github' ! -name 'node_modules' ! -name 'android' ! -name 'package*.json' ! -name 'capacitor.config.json' -exec cp -r {} www/ \;
+          npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/android
           npx cap add android
           npx cap sync
